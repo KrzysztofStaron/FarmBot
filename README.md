@@ -3,6 +3,7 @@ Krzysztof Staroń, 2021
 
 # GetStarted
 //make instruction
+//make commands english
 //make command list
 //finish progeam
 
