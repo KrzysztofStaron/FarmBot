@@ -13,7 +13,7 @@ Krzysztof Staroń, 2021
 **appData/playerData.json**
 **appData/plants.json**
 
-if u don't have this philes create it
+if don't create it
 ```JSON
 {
 
