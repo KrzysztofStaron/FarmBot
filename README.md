@@ -12,9 +12,9 @@ npm i doscord.js
   "token":""
 }
 ```
-OR write
+OR at end write:
 ```JavaScript
-client.login("YourToken");
+client.login("{YourToken}");
 ```
 
 3.When u start **The program will be create** 2 files:
