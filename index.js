@@ -8,7 +8,7 @@ let playerData;
 
 
 client.on('ready', () => {
-  console.log(`Połączono: ${client.user.tag}`)
+  console.log(`Connect: ${client.user.tag}`)
 });
 
 
