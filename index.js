@@ -2,7 +2,8 @@ const fs = require('fs');
 const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const permisionRole="FarmBotManager";
+let permisionRole="FarmBotManager";
+let prefix = ",";
 let plantsData;
 let playerData;
 
@@ -58,14 +59,14 @@ client.on('message', msg => {
 
   //admin
 
-  if (getCommand()[0]=="#AdedPlants") {
+  if (getCommand()[0]==prefix+"AdedPlants") {
     if (permision) {
       aded();
     }else{noPermision()}
 
   }
 
-  if (getCommand()[0]=="#giveMoney") {
+  if (getCommand()[0]==prefix+"giveMoney") {
     if (permision) {
       if (getCommand().length!=2) {
         send("{how many?}");
@@ -78,7 +79,7 @@ client.on('message', msg => {
     }else{noPermision()}
   }
 
-  if (getCommand()[0]=="#DelatePlant") {
+  if (getCommand()[0]==prefix+"DelatePlant") {
     if (permision) {
      if (getCommand().length!=2){
       send("{name}");
@@ -92,7 +93,7 @@ client.on('message', msg => {
   }else{noPermision()}
   }
 
-  if (getCommand()[0]=="#AdPlant") {
+  if (getCommand()[0]==prefix+"AdPlant") {
     if (permision) {
     if (getCommand().length!=5){
       send("{name} {BuyPrice} {growTime} {sellPrice}");
@@ -117,11 +118,11 @@ client.on('message', msg => {
 
   //normal user
 
-  if (getCommand()[0]=="#wallet") {
+  if (getCommand()[0]==prefix+"wallet") {
     send("You have:"+playerData[msg.author.id].money);
   }
 
-  if (getCommand()[0]=="#createFarm") {
+  if (getCommand()[0]==prefix+"createFarm") {
     if (getCommand().length!=2) {
       send("{size}");
     }else if(!parseInt(getCommand()[1])>0){

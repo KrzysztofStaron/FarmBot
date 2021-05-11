@@ -31,5 +31,5 @@ Files must be contain:
 //make command list
 //finish program
 
-# HelpMe
+# Help Me
 Please put a link to this project on your discord server!
