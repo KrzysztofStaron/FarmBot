@@ -1,3 +1,3 @@
 # FarmBot
-made by PancerZaba \n
-if u use it,on your serwer add link to this project :D
+made by PancerZaba
+#put a link to this project on your discord server :D
