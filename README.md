@@ -9,7 +9,7 @@ npm i doscord.js
 2.create file token.JSON
 ```JSON
 {
-  "token":""
+  "token":"{your token}"
 }
 ```
 OR at end write:
