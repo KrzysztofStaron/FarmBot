@@ -1,7 +1,7 @@
 Krzysztof Staroń
 
 
-# GetStarted
+# Get Started
 1.install d.js
 ```
 npm i doscord.js
