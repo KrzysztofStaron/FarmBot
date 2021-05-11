@@ -12,12 +12,16 @@ npm i doscord.js
   "token":""
 }
 ```
+OR write
+```JavaScript
+client.login("YourToken");
+```
 
 3.When u start **The program will be create** 2 files:
 **appData/playerData.json**
 **appData/plants.json**
 
-if don't create it
+if don't, create it!
 ```JSON
 {
 
