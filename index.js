@@ -165,4 +165,4 @@ client.on('message', msg => {
 });
 
 
-client.login('ODQwNTkwMTU0ODI5Mzk4MDU2.YJaalg.PG2ic1T5URLiXluxu6s-AJgy7-Y');
+client.login(fs.readFileSync('key.txt'));
