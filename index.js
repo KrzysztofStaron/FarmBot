@@ -5,6 +5,7 @@ const client = new Discord.Client();
 const permisionRole="FarmBotManager";
 let plantsData;
 let playerData;
+
 if (fs.existsSync("appData/playerData.json")) {
 fs.writeFileSync('appData/playerData.json', "{}");
 }
