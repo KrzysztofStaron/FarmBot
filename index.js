@@ -163,5 +163,5 @@ client.on('message', msg => {
   fs.writeFileSync('appData/playerData.json', JSON.stringify(playerData));
   fs.writeFileSync('appData/plants.json', JSON.stringify(plantsData));
 });
-let token = JSON.parse(fs.readFileSync('token.json', 'utf8'));
-client.login(token.token);
+
+client.login(JSON.parse(fs.readFileSync('token.json', 'utf8')).token);
