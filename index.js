@@ -5,7 +5,13 @@ const client = new Discord.Client();
 const permisionRole="FarmBotManager";
 let plantsData;
 let playerData;
+if (fs.existsSync("appData/playerData.json")) {
+fs.writeFileSync('appData/playerData.json', "{}");
+}
 
+if (fs.existsSync("appData/plants.json")) {
+fs.writeFileSync('appData/plants.json',  "{}");
+}
 
 client.on('ready', () => {
   console.log(`Connect: ${client.user.tag}`)
