@@ -22,6 +22,7 @@ client.login("YourToken");
 **appData/plants.json**
 
 if don't, create it!
+Files must be contain:
 ```JSON
 {
 
