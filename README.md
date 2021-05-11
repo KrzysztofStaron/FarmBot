@@ -1,4 +1,4 @@
-Krzysztof Staroń, 2021
+Krzysztof Staroń
 
 
 # GetStarted
