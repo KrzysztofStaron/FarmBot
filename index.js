@@ -48,6 +48,7 @@ client.on('message', msg => {
     prefix=playerData.prefix;
   }else{
     playerData.prefix="#";
+    prefix=playerData.prefix;
   }
 
   if (!playerData.hasOwnProperty(msg.author.id)) {
