@@ -43,7 +43,7 @@ client.on('message', msg => {
     }
   }
   /*other*/
-  
+
   if (!playerData.hasOwnProperty("prefix")) {
       playerData.prefix=prefix;
   }
@@ -62,7 +62,9 @@ client.on('message', msg => {
   /*commands*/
 
   //admin
-
+  if (getCommand()[0]=="ShowPrefix") {
+    send(prefix);
+  }
   if (getCommand()[0]==prefix+"SetPrefix") {
     if (permision) {
     if (getCommand().length!=2) {
