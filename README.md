@@ -17,18 +17,6 @@ OR at end write:
 client.login("{YourToken}");
 ```
 
-**3.When u start The program will be create 2 files:**<br>
-**appData/playerData.json**<br>
-**appData/plants.json**
-
-if don't, create it!
-Files must be contain:
-```JSON
-{
-
-}
-```
-
 # Commands
 •**ShowPrefix** this command **don't require prefix** <br>
 •**SetPrefix {char}** set prefix for commands <br>
