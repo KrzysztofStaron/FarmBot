@@ -3,15 +3,15 @@ const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 let permisionRole="FarmBotManager";
-let prefix = ",";
+let prefix;
 let plantsData;
 let playerData;
 
-if (fs.existsSync("appData/playerData.json")) {
+if (!fs.existsSync("appData/playerData.json")) {
 fs.writeFileSync('appData/playerData.json', "{}");
 }
 
-if (fs.existsSync("appData/plants.json")) {
+if (!fs.existsSync("appData/plants.json")) {
 fs.writeFileSync('appData/plants.json',  "{}");
 }
 
@@ -47,7 +47,7 @@ client.on('message', msg => {
   if (playerData.hasOwnProperty("prefix")) {
     prefix=playerData.prefix;
   }else{
-    playerData.prefix=prefix;
+    playerData.prefix="#";
   }
 
   if (!playerData.hasOwnProperty(msg.author.id)) {
@@ -73,7 +73,7 @@ client.on('message', msg => {
     }else{
       prefix=getCommand()[1];
       playerData.prefix=prefix;
-      send("now prefix is:"+prefix);
+      send("now prefix is:"+playerData.prefix);
     }
   }else{
     noPermision();
