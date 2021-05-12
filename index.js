@@ -81,18 +81,17 @@ client.on('message', msg => {
   }
   }
 
-  if (getCommand()[0]==prefix+"AdedPlants") {
+  if (getCommand()[0]==prefix + "AdedPlants") {
     if (permision) {
       aded();
     }else{noPermision()}
-
   }
 
-  if (getCommand()[0]==prefix+"GiveMoney") {
+  if (getCommand()[0]==prefix + "GiveMoney") {
     if (permision) {
-      if (getCommand().length<2) {
+      if (getCommand().length < 2) {
         send("{how many?} {who(don't required)}");
-      }else if(!parseInt(getCommand()[1])>0){
+      }else if(!parseInt(getCommand()[1]) > 0){
         send("number!!");
       }else{
         let toWho = msg.mentions.users.first() || msg.author;
@@ -106,40 +105,40 @@ client.on('message', msg => {
             }
           }
         }
-        playerData[toWho.id].money+=parseInt(getCommand()[1]);
-        send(toWho.username+" now have:"+playerData[toWho.id].money);
+        playerData[toWho.id].money += parseInt(getCommand()[1]);
+        send(toWho.username+" now have:" + playerData[toWho.id].money);
       }
     }else{noPermision()}
   }
 
-  if (getCommand()[0]==prefix+"DelatePlant") {
+  if (getCommand()[0]==prefix + "DelatePlant") {
     if (permision) {
-     if (getCommand().length!=2){
+     if (getCommand().length != 2){
       send("{name}");
      }else if(!plantsData.hasOwnProperty(getCommand()[1])){
       send("plant don't exist");
      }else{
-      send("delete:"+ getCommand()[1])+"\n other plants:";
+      send("delete:" + getCommand()[1]) + "\n other plants:";
       delete plantsData[getCommand()[1]];
       aded();
     }
   }else{noPermision()}
   }
 
-  if (getCommand()[0]==prefix+"AdPlant") {
+  if (getCommand()[0]==prefix + "AdPlant") {
     if (permision) {
-    if (getCommand().length!=5){
+    if (getCommand().length !=5 ){
       send("{name} {BuyPrice} {growTime} {sellPrice}");
-    }else if(!parseInt(getCommand()[2])>0){
+    }else if(!parseInt(getCommand()[2]) > 0){
       send(parseInt(getCommand()[2]));
       send(getCommand()[2]);
       send("Price must be a number!!")
-    }else if(!parseInt(getCommand()[3])>0){
+    }else if(!parseInt(getCommand()[3]) > 0){
       send("time must be a number(write in minutes)")
-    }else if(!parseInt(getCommand()[4])>0){
+    }else if(!parseInt(getCommand()[4]) > 0){
       send("sellPrice myst be a number")
     }else{
-      plantsData[getCommand()[1]]={
+      plantsData[getCommand()[1]] ={
         "buyPrice":parseInt(getCommand()[2]),
         "growTime":parseInt(getCommand()[3])*60000,
         "sellPrice":parseInt(getCommand()[4])
@@ -163,21 +162,21 @@ client.on('message', msg => {
     if (getCommand().length != 2) {
       send("{size}");
     }else if(!parseInt(getCommand()[1]) > 0){
-      send("size must be a number!!");
+      send("Size must be a number!!");
     }else if(Math.sqrt(playerData[msg.author.id].farm.size) > parseInt(getCommand()[1])){
-      send("u have bigger farm than this");
+      send("You have bigger farm than this");
     }else if(Math.sqrt(playerData[msg.author.id].farm.size) == parseInt(getCommand()[1])){
-      send("u try to buy farm with size:"+parseInt(getCommand()[1])+", but your arm has same size");
+      send("You try to buy farm with size:"+parseInt(getCommand()[1])+", but your farm has same size");
     }else{
       let farmSize=parseInt(getCommand()[1])*parseInt(getCommand()[1]);
       let farmPrice=farmSize*10;
       if (playerData[msg.author.id].money >= farmPrice) {
         playerData[msg.author.id].farm.size = farmSize;
-        send("u had:"+playerData[msg.author.id].money);
+        send("You had:"+playerData[msg.author.id].money);
         playerData[msg.author.id].money -= farmPrice;
-        send("farm price:"+farmPrice +"\nnow have:"+playerData[msg.author.id].money+"\nyour farm now contain:"+farmSize+"dirt tiles");
+        send("```Farm price:"+farmPrice +"\nNow have:"+playerData[msg.author.id].money+"\nYour farm now contain: "+farmSize+" dirt tiles```");
       }else{
-        send("You have:"+playerData[msg.author.id].money+"\n farm cost:"+farmPrice);
+        send("You have:"+playerData[msg.author.id].money+"\n Farm cost:"+farmPrice);
       }
     }
   }
