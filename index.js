@@ -21,15 +21,12 @@ client.on('ready', () => {
 
 
 client.on('message', msg => {
-  if (!playerData.hasOwnProperty("prefix")) {
-      playerData.prefix=prefix;
-  }
-  /*zmienne*/
+  /*variables*/
   const permision=msg.member.roles.cache.some(r => r.name === permisionRole)
   plantsData = JSON.parse(fs.readFileSync('appData/plants.json'));
   playerData = JSON.parse(fs.readFileSync('appData/playerData.json'));
 
-  /*funkcje*/
+  /*functions*/
   if (msg.author.bot) {return;}
   const getMeasage = function() {return msg.content.toLowerCase()}
   const getCommand = function() {return msg.content.split(" ")}
@@ -45,7 +42,7 @@ client.on('message', msg => {
       send("There is no plant in the system");
     }
   }
-  /*inne*/
+  /*other*/
 
   if (!playerData.hasOwnProperty(msg.author.id)) {
     playerData[msg.author.id]={
