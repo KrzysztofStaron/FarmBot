@@ -171,12 +171,9 @@ client.on('message', msg => {
         playerData[msg.author.id].farm.size=farmSize;
         send("u had:"+playerData[msg.author.id].money);
         playerData[msg.author.id].money-=farmPrice;
-        send("farm price:"+farmPrice);
-        send("now have:"+playerData[msg.author.id].money)
-        send("your farm now contain:"+farmSize+"dirt tiles");
+        send("farm price:"+farmPrice +"\n now have:"+playerData[msg.author.id].money+"\n your farm now contain:"+farmSize+"dirt tiles");
       }else{
-        send("You have:"+playerData[msg.author.id].money);
-        send("farm cost:"+farmPrice);
+        send("You have:"+playerData[msg.author.id].money+"\n farm cost:"+farmPrice);
       }
     }
   }
