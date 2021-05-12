@@ -28,7 +28,16 @@ Files must be contain:
 
 }
 ```
-//make command list
+
+# Commands
+1.**ShowPrefix** this command **don't require prefix**
+2.**SetPrefix {char}** set prefix for commands
+3.**AdedPlants** display all aded plants
+4.**giveMoney {count}** give money
+5.**DelatePlant {name}** delete plant
+6.**AdPlant {name} {BuyPrice} {growTime} {sellPrice}** add plant
+7.**wallet** display your money
+8.**createFarm {size}** create your farm
 //finish program
 
 # Help Me
