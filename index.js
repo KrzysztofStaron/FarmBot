@@ -44,8 +44,10 @@ client.on('message', msg => {
   }
   /*other*/
 
-  if (!playerData.hasOwnProperty("prefix")) {
-      playerData.prefix=prefix;
+  if (playerData.hasOwnProperty("prefix")) {
+    prefix=playerData.prefix;
+  }else{
+    playerData.prefix=prefix;
   }
 
   if (!playerData.hasOwnProperty(msg.author.id)) {
@@ -62,9 +64,6 @@ client.on('message', msg => {
   /*commands*/
 
   //admin
-  if (getCommand()[0]=="ShowPrefix") {
-    send(prefix);
-  }
   if (getCommand()[0]==prefix+"SetPrefix") {
     if (permision) {
     if (getCommand().length!=2) {
@@ -139,6 +138,10 @@ client.on('message', msg => {
   }
 
   //normal user
+
+  if (getCommand()[0]=="ShowPrefix") {
+    send(prefix);
+  }
 
   if (getCommand()[0]==prefix+"wallet") {
     send("You have:"+playerData[msg.author.id].money);
