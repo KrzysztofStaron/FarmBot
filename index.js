@@ -31,10 +31,10 @@ client.on('message', msg => {
 
   /*funkcje*/
   if (msg.author.bot) {return;}
-  const getMeasage = function() {return msg.content.toLowerCase();}
-  const getCommand = function() {return msg.content.split(" ");}
-  const send = function(txt) {msg.channel.send(txt);}
-  const noPermision= function(){send("only "+permisionRole+" can use this command");}
+  const getMeasage = function() {return msg.content.toLowerCase()}
+  const getCommand = function() {return msg.content.split(" ")}
+  const send = function(txt) {msg.channel.send(txt)}
+  const noPermision= function(){send("only "+permisionRole+" can use this command")}
 
   const aded = function(){
     for (var i = 0; i < Object.keys(plantsData).length; i++) {
