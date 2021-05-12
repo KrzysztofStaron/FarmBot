@@ -43,6 +43,10 @@ client.on('message', msg => {
     }
   }
   /*other*/
+  
+  if (!playerData.hasOwnProperty("prefix")) {
+      playerData.prefix=prefix;
+  }
 
   if (!playerData.hasOwnProperty(msg.author.id)) {
     playerData[msg.author.id]={
