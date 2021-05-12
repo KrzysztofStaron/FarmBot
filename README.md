@@ -26,7 +26,6 @@ client.login("{YourToken}");
 •**AdPlant {name} {BuyPrice} {growTime} {sellPrice}** add plant <br>
 •**wallet** display your money <br>
 •**createFarm {size}** create your farm <br>
-//finish program
 
 # Help Me
 Please put a link to this project on your discord server!
