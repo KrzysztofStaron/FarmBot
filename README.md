@@ -12,7 +12,7 @@ npm i doscord.js
   "token":"{your token}"
 }
 ```
-**OR at end write:**
+**OR at end of *index.js* write:**
 ```JavaScript
 client.login("{YourToken}");
 ```
