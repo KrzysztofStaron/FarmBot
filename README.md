@@ -18,14 +18,16 @@ client.login("{YourToken}");
 ```
 
 # Commands
-•**ShowPrefix** this command **don't require prefix** <br>
-•**SetPrefix {char}** set prefix for commands <br>
-•**AdedPlants** display all aded plants <br>
-•**giveMoney {count} {who(*not required*)}** give money <br>
-•**DelatePlant {name}** delete plant <br>
-•**AdPlant {name} {BuyPrice} {growTime} {sellPrice}** add plant <br>
-•**wallet** display your money <br>
-•**createFarm {size}** create your farm <br>
+1.**By Admin**
+ •**SetPrefix {char}** set prefix for commands <br>
+ •**AdedPlants** display all aded plants <br>
+ •**GiveMoney {count} {who(*not required*)}** give money <br>
+ •**DelatePlant {name}** delete plant <br>
+ •**AdPlant {name} {BuyPrice} {growTime} {sellPrice}** add plant <br>
+2.**By user**
+ •**ShowPrefix** this command **don't require prefix** <br>
+ •**Wallet** display your money <br>
+ •**CreateFarm {size}** create your farm <br>
 
 # Help Me
 Please put a link to this project on your discord server!
