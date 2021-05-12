@@ -174,7 +174,7 @@ client.on('message', msg => {
         playerData[msg.author.id].farm.size = farmSize;
         send("You had:"+playerData[msg.author.id].money);
         playerData[msg.author.id].money -= farmPrice;
-        send("```Farm price:"+farmPrice +"\nNow have:"+playerData[msg.author.id].money+"\nYour farm now contain: "+farmSize+" dirt tiles```");
+        send("```Farm price:**"+farmPrice +"**\nNow have:**"+playerData[msg.author.id].money+"**\nYour farm now contain: **"+farmSize+"** dirt tiles```");
       }else{
         send("You have:"+playerData[msg.author.id].money+"\n Farm cost:"+farmPrice);
       }
