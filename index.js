@@ -21,6 +21,9 @@ client.on('ready', () => {
 
 
 client.on('message', msg => {
+  if (!playerData.hasOwnProperty("prefix")) {
+      playerData.prefix=prefix;
+  }
   /*zmienne*/
   const permision=msg.member.roles.cache.some(r => r.name === permisionRole)
   plantsData = JSON.parse(fs.readFileSync('appData/plants.json'));
@@ -67,6 +70,7 @@ client.on('message', msg => {
       send("prefix must have only 1 letter");
     }else{
       prefix=getCommand()[1];
+      playerData.prefix=prefix;
       send("now prefix is:"+prefix);
     }
   }else{
