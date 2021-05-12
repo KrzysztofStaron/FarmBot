@@ -59,6 +59,21 @@ client.on('message', msg => {
 
   //admin
 
+  if (getCommand()[0]==prefix+"SetPrefix") {
+    if (permision) {
+    if (getCommand().length!=2) {
+      send("{prefix}");
+    }else if(getCommand()[1].length!=1){
+      send("prefix must have only 1 letter");
+    }else{
+      prefix=getCommand()[1];
+      send("now prefix is:"+prefix);
+    }
+  }else{
+    noPermision();
+  }
+  }
+
   if (getCommand()[0]==prefix+"AdedPlants") {
     if (permision) {
       aded();
