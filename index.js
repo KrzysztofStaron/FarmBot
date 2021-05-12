@@ -53,7 +53,7 @@ client.on('message', msg => {
 
   if (!playerData.hasOwnProperty(msg.author.id)) {
     playerData[msg.author.id]={
-      "surname":msg.author.username,
+      "username":msg.author.username,
       "money":0,
       "farm":{
         "size":0,
@@ -90,13 +90,24 @@ client.on('message', msg => {
 
   if (getCommand()[0]==prefix+"giveMoney") {
     if (permision) {
-      if (getCommand().length!=2) {
-        send("{how many?}");
+      if (getCommand().length<2) {
+        send("{how many?} {who(don't required)}");
       }else if(!parseInt(getCommand()[1])>0){
         send("number!!");
       }else{
-        playerData[msg.author.id].money+=parseInt(getCommand()[1]);
-        send("You have:"+playerData[msg.author.id].money);
+        let toWho = msg.mentions.users.first() || msg.author;
+        if (!playerData.hasOwnProperty(toWho.id)) {
+          playerData[toWho.id]={
+            "username":toWho.username,
+            "money":0,
+            "farm":{
+              "size":0,
+              "plants":[]
+            }
+          }
+        }
+        playerData[toWho.id].money+=parseInt(getCommand()[1]);
+        send(toWho.username+" now have:"+playerData[toWho.id].money);
       }
     }else{noPermision()}
   }
@@ -158,14 +169,14 @@ client.on('message', msg => {
       let farmPrice=farmSize*10;
       if (playerData[msg.author.id].money>=farmPrice) {
         playerData[msg.author.id].farm.size=farmSize;
-        playerData[msg.author.id].money-=farmPrice;
         send("u had:"+playerData[msg.author.id].money);
+        playerData[msg.author.id].money-=farmPrice;
         send("farm price:"+farmPrice);
         send("now have:"+playerData[msg.author.id].money)
         send("your farm now contain:"+farmSize+"dirt tiles");
       }else{
         send("You have:"+playerData[msg.author.id].money);
-        send("farm cost:"+farmPrice+"\n u need:"+farmPrice-playerData[msg.author.id].money);
+        send("farm cost:"+farmPrice);
       }
     }
   }
