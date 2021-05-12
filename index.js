@@ -165,7 +165,7 @@ client.on('message', msg => {
     }else if(!parseInt(getCommand()[1]) > 0){
       send("size must be a number!!");
     }else if(Math.sqrt(playerData[msg.author.id].farm.size) > parseInt(getCommand()[1])){
-      send("u have bigger farm than:"+parseInt(getCommand()[1]));
+      send("u have bigger farm than this");
     }else if(Math.sqrt(playerData[msg.author.id].farm.size) == parseInt(getCommand()[1])){
       send("u try to buy farm with size:"+parseInt(getCommand()[1])+", but your arm has same size");
     }else{
