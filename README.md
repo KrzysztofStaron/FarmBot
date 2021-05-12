@@ -17,8 +17,8 @@ OR at end write:
 client.login("{YourToken}");
 ```
 
-**3.When u start The program will be create 2 files:**
-**appData/playerData.json**
+**3.When u start The program will be create 2 files:**<br>
+**appData/playerData.json**<br>
 **appData/plants.json**
 
 if don't, create it!
@@ -30,14 +30,14 @@ Files must be contain:
 ```
 
 # Commands
-1.**ShowPrefix** this command **don't require prefix**
-2.**SetPrefix {char}** set prefix for commands
-3.**AdedPlants** display all aded plants
-4.**giveMoney {count}** give money
-5.**DelatePlant {name}** delete plant
-6.**AdPlant {name} {BuyPrice} {growTime} {sellPrice}** add plant
-7.**wallet** display your money
-8.**createFarm {size}** create your farm
+1.**ShowPrefix** this command **don't require prefix**<br>
+2.**SetPrefix {char}** set prefix for commands<br>
+3.**AdedPlants** display all aded plants<br>
+4.**giveMoney {count}** give money<br>
+5.**DelatePlant {name}** delete plant<br>
+6.**AdPlant {name} {BuyPrice} {growTime} {sellPrice}** add plant<br>
+7.**wallet** display your money<br>
+8.**createFarm {size}** create your farm<br>
 //finish program
 
 # Help Me
