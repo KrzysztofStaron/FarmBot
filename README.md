@@ -30,14 +30,14 @@ Files must be contain:
 ```
 
 # Commands
-1.**ShowPrefix** this command **don't require prefix** <br>
-2.**SetPrefix {char}** set prefix for commands <br>
-3.**AdedPlants** display all aded plants <br>
-4.**giveMoney {count} {who(*not required*)}** give money <br>
-5.**DelatePlant {name}** delete plant <br>
-6.**AdPlant {name} {BuyPrice} {growTime} {sellPrice}** add plant <br>
-7.**wallet** display your money <br>
-8.**createFarm {size}** create your farm <br>
+•**ShowPrefix** this command **don't require prefix** <br>
+•**SetPrefix {char}** set prefix for commands <br>
+•**AdedPlants** display all aded plants <br>
+•**giveMoney {count} {who(*not required*)}** give money <br>
+•**DelatePlant {name}** delete plant <br>
+•**AdPlant {name} {BuyPrice} {growTime} {sellPrice}** add plant <br>
+•**wallet** display your money <br>
+•**createFarm {size}** create your farm <br>
 //finish program
 
 # Help Me
