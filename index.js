@@ -88,7 +88,7 @@ client.on('message', msg => {
 
   }
 
-  if (getCommand()[0]==prefix+"giveMoney") {
+  if (getCommand()[0]==prefix+"GiveMoney") {
     if (permision) {
       if (getCommand().length<2) {
         send("{how many?} {who(don't required)}");
@@ -151,27 +151,31 @@ client.on('message', msg => {
 
   //normal user
 
-  if (getCommand()[0]=="ShowPrefix") {
+  if (getCommand()[0] == "ShowPrefix") {
     send(prefix);
   }
 
-  if (getCommand()[0]==prefix+"wallet") {
+  if (getCommand()[0] == prefix + "Wallet") {
     send("You have:"+playerData[msg.author.id].money);
   }
 
-  if (getCommand()[0]==prefix+"createFarm") {
-    if (getCommand().length!=2) {
+  if (getCommand()[0] == prefix + "CreateFarm") {
+    if (getCommand().length != 2) {
       send("{size}");
-    }else if(!parseInt(getCommand()[1])>0){
+    }else if(!parseInt(getCommand()[1]) > 0){
       send("size must be a number!!");
+    }else if(playerData[msg.author.id].farm.size > parseInt(getCommand()[1])){
+      send("u have bigger farm than:"+parseInt(getCommand()[1]));
+    }else if(playerData[msg.author.id].farm.size = parseInt(getCommand()[1])){
+      send("u try to buy farm with size:"+parseInt(getCommand()[1])+", but your arm has same size");
     }else{
       let farmSize=parseInt(getCommand()[1])*parseInt(getCommand()[1]);
       let farmPrice=farmSize*10;
-      if (playerData[msg.author.id].money>=farmPrice) {
-        playerData[msg.author.id].farm.size=farmSize;
+      if (playerData[msg.author.id].money >= farmPrice) {
+        playerData[msg.author.id].farm.size = farmSize;
         send("u had:"+playerData[msg.author.id].money);
-        playerData[msg.author.id].money-=farmPrice;
-        send("farm price:"+farmPrice +"\n now have:"+playerData[msg.author.id].money+"\n your farm now contain:"+farmSize+"dirt tiles");
+        playerData[msg.author.id].money -= farmPrice;
+        send("farm price:"+farmPrice +"\nnow have:"+playerData[msg.author.id].money+"\nyour farm now contain:"+farmSize+"dirt tiles");
       }else{
         send("You have:"+playerData[msg.author.id].money+"\n farm cost:"+farmPrice);
       }
