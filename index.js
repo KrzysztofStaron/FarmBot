@@ -70,7 +70,7 @@ client.on('message', msg => {
     if (getCommand().length!=2) {
       send("{prefix}");
     }else if(getCommand()[1].length!=1){
-      send("prefix must have only 1 letter");
+      send("prefix must have 1 char");
     }else{
       prefix=getCommand()[1];
       playerData.prefix=prefix;
