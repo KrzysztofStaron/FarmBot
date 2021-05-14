@@ -171,7 +171,7 @@ client.on('message', msg => {
         playerData[msg.author.id].farm.size = farmSize;
         send("```You had:"+playerData[msg.author.id].money+"```");
         playerData[msg.author.id].money -= farmPrice;
-        send("```Farm price:**"+farmPrice +"**\nNow have:**" + playerData[msg.author.id].money+"**\nYour farm now contain: **"+farmSize+"** dirt tiles```");
+        send("```Farm price:"+farmPrice +"\nNow have:" + playerData[msg.author.id].money+"**\nYour farm now contain: "+farmSize+" dirt tiles```");
         while (playerData[msg.author.id].farm.plants.length != playerData[msg.author.id].farm.size) {
           playerData[msg.author.id].farm.plants.push("empty");
         }
@@ -181,15 +181,32 @@ client.on('message', msg => {
     }
   }
 
-    if (getCommand()[0] == prefix + "Plant") {
+    if (getCommand()[0] == prefix + "BuyPlant") {
       if (getCommand().length != 3) {
-        send("{tile} {what?}");
+        send("{count} {what?}");
       }else if(!parseInt(getCommand()[1])>0){
-        send("Tile must be number!, u must plant on 1-"+playerData[msg.author.id].farm.size+" tile");
+        send("count must be number!");
       }else if(!plantsData.hasOwnProperty(getCommand()[2])){
         send("plant don't exist");
+      }else{
+        send("```You had:"+playerData[msg.author.id].money+"```");
+        playerData[msg.author.id].money -= plantsData[getCommand()[2]].buyPrice*parseInt(getCommand()[1]);
+        send("```Buy Prise:"+plantsData[getCommand()[2]].buyPrice*parseInt(getCommand()[1]) +"\nNow have:" + playerData[msg.author.id].money+"```");
+        if (playerData[msg.author.id].equipment.hasOwnProperty(getCommand()[2])) {
+          playerData[msg.author.id].equipment[getCommand()[2]].count+=parseInt(getCommand()[1]);
+        }else{
+          playerData[msg.author.id].equipment[getCommand()[2]]={"count":parseInt(getCommand()[1])}
+        }
       }
     }
+
+    if (getCommand()[0] == prefix + "ShowEq") {
+      const items=Object.keys(playerData[msg.author.id].equipment);
+      for (var i = 0; i < items.length; i++) {
+        send(`Name:**${items[i]}** Count:**${playerData[msg.author.id].equipment[items[i]].count}**`);
+      }
+    }
+
 
 
   fs.writeFileSync('appData/playerData.json', JSON.stringify(playerData));
