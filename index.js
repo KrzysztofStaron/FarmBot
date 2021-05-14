@@ -37,6 +37,18 @@ client.on('message', msg => {
       send("There is no plant in the system");
     }
   }
+
+  const createData= function (user) {
+    playerData[user.id]={
+      "username":user.username,
+      "money":0,
+      "farm":{
+        "size":1,
+        "plants":["empty"]
+      },
+      "equipment":{}
+    }
+  }
   /*other*/
 
   if (playerData.hasOwnProperty("prefix")) {
@@ -47,20 +59,36 @@ client.on('message', msg => {
   }
 
   if (!playerData.hasOwnProperty(msg.author.id)) {
-    playerData[msg.author.id]={
-      "username":msg.author.username,
-      "money":0,
-      "farm":{
-        "size":1,
-        "plants":["empty"]
-      },
-      "equipment":{}
-    }
+    createData(msg.author);
   }
 
   /*commands*/
 
   //admin
+  if (getCommand()[0]==prefix + "ClearEq") {
+    if (permision) {
+        let toWho = msg.mentions.users.first() || msg.author;
+        if (!playerData.hasOwnProperty(toWho.id)) {
+            createData(toWho);
+        }
+        playerData[toWho.id].equipment = {};
+        send(toWho.username+" now has empty eq");
+    }else{noPermision()}
+  }
+
+  if (getCommand()[0]==prefix + "ClearFarm") {
+    if (permision) {
+        let toWho = msg.mentions.users.first() || msg.author;
+        if (!playerData.hasOwnProperty(toWho.id)) {
+            createData(toWho);
+        }
+        for (var i = 0; i < playerData[toWho.id].farm.plants.length; i++) {
+          playerData[toWho.id].farm.plants[i]="empty";
+        }
+        send(toWho.username+" now has empty farm");
+    }else{noPermision()}
+  }
+
   if (getCommand()[0]==prefix+"SetPrefix") {
     if (permision) {
     if (getCommand().length!=2) {
@@ -92,18 +120,10 @@ client.on('message', msg => {
       }else{
         let toWho = msg.mentions.users.first() || msg.author;
         if (!playerData.hasOwnProperty(toWho.id)) {
-          playerData[toWho.id]={
-            "username":toWho.username,
-            "money":0,
-            "farm":{
-              "size":1,
-              "plants":["empty"]
-            },
-            "equipment":{}
-          }
+          createData(toWho);
         }
         playerData[toWho.id].money += parseInt(getCommand()[1]);
-        send(toWho.username+" now have:" + playerData[toWho.id].money);
+        send(toWho.username+" now has:" + playerData[toWho.id].money);
       }
     }else{noPermision()}
   }
@@ -205,7 +225,39 @@ client.on('message', msg => {
       for (var i = 0; i < items.length; i++) {
         send(`Name:**${items[i]}** Count:**${playerData[msg.author.id].equipment[items[i]].count}**`);
       }
+      if (items.length==0) {
+        send("nothing in eq");
+      }
     }
+
+      if (getCommand()[0] == prefix + "PlantVegetable"){
+        if (getCommand().length != 3) {
+          send("{tile} {what}");
+        }else if(!parseInt(getCommand()[1])>0){
+          send("incorrect tile number!,your tiles:1-"+playerData[msg.author.id].farm.size);
+        }else if(!playerData[msg.author.id].equipment.hasOwnProperty(getCommand()[2])){
+          send("You don't have this seed");
+          if (!plantsData.hasOwnProperty(getCommand()[2])) {
+            send("Btw this seed don't exist");
+          }
+        }else if(parseInt(getCommand()[1])-1>playerData[msg.author.id].farm.size){
+          send("incorrect tile number!,your tiles:1-"+playerData[msg.author.id].farm.size);
+        }else if(playerData[msg.author.id].farm.plants[parseInt(getCommand()[1])-1]!="empty"){
+          send("this tile contain plant");
+        }else{
+          playerData[msg.author.id].farm.plants[parseInt(getCommand()[1])-1]={
+            "name":getCommand()[2],
+            "plantTime":new Date().getTime(),
+            "growDate":new Date().getTime()+plantsData[getCommand()[2]].growTime
+          }
+          if (playerData[msg.author.id].equipment[getCommand()[2]].count==1) {
+            delete playerData[msg.author.id].equipment[getCommand()[2]];
+          }else{
+            playerData[msg.author.id].equipment[getCommand()[2]].count-=1;
+          }
+          send("The Plant was planted");
+        }
+      }
 
 
 
