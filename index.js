@@ -7,13 +7,8 @@ let prefix;
 let plantsData;
 let playerData;
 
-if (!fs.existsSync("appData/playerData.json")) {
-fs.writeFileSync('appData/playerData.json', "{}");
-}
-
-if (!fs.existsSync("appData/plants.json")) {
-fs.writeFileSync('appData/plants.json',  "{}");
-}
+if (!fs.existsSync("appData/playerData.json")) fs.writeFileSync('appData/playerData.json', "{}");
+if (!fs.existsSync("appData/plants.json")) fs.writeFileSync('appData/plants.json',  "{}");
 
 client.on('ready', () => {
   console.log(`Connect: ${client.user.tag}`)
@@ -56,9 +51,10 @@ client.on('message', msg => {
       "username":msg.author.username,
       "money":0,
       "farm":{
-        "size":0,
-        "plants":[]
-      }
+        "size":1,
+        "plants":["empty"]
+      },
+      "equipment":{}
     }
   }
 
@@ -100,9 +96,10 @@ client.on('message', msg => {
             "username":toWho.username,
             "money":0,
             "farm":{
-              "size":0,
-              "plants":[]
-            }
+              "size":1,
+              "plants":["empty"]
+            },
+            "equipment":{}
           }
         }
         playerData[toWho.id].money += parseInt(getCommand()[1]);
@@ -172,18 +169,31 @@ client.on('message', msg => {
       let farmPrice=farmSize*10;
       if (playerData[msg.author.id].money >= farmPrice) {
         playerData[msg.author.id].farm.size = farmSize;
-        send("You had:"+playerData[msg.author.id].money);
+        send("```You had:"+playerData[msg.author.id].money+"```");
         playerData[msg.author.id].money -= farmPrice;
-        send("```Farm price:**"+farmPrice +"**\nNow have:**"+playerData[msg.author.id].money+"**\nYour farm now contain: **"+farmSize+"** dirt tiles```");
+        send("```Farm price:**"+farmPrice +"**\nNow have:**" + playerData[msg.author.id].money+"**\nYour farm now contain: **"+farmSize+"** dirt tiles```");
+        while (playerData[msg.author.id].farm.plants.length != playerData[msg.author.id].farm.size) {
+          playerData[msg.author.id].farm.plants.push("empty");
+        }
       }else{
         send("You have:"+playerData[msg.author.id].money+"\n Farm cost:"+farmPrice);
       }
     }
   }
 
+    if (getCommand()[0] == prefix + "Plant") {
+      if (getCommand().length != 3) {
+        send("{tile} {what?}");
+      }else if(!parseInt(getCommand()[1])>0){
+        send("Tile must be number!, u must plant on 1-"+playerData[msg.author.id].farm.size+" tile");
+      }else if(!plantsData.hasOwnProperty(getCommand()[2])){
+        send("plant don't exist");
+      }
+    }
+
 
   fs.writeFileSync('appData/playerData.json', JSON.stringify(playerData));
   fs.writeFileSync('appData/plants.json', JSON.stringify(plantsData));
 });
 
-client.login(JSON.parse(fs.readFileSync('token.json', 'utf8')).token);
+client.login(JSON.parse(fs.readFileSync('token.txt', 'utf8')));

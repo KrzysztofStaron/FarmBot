@@ -6,11 +6,9 @@ Krzysztof Staroń
 ```
 npm i doscord.js
 ```
-**2.create file token.JSON**
+**2.create file token.txt**
 ```JSON
-{
-  "token":"{your token}"
-}
+"{your token}"
 ```
 **OR at end of *index.js* write:**
 ```JavaScript
