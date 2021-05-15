@@ -16,13 +16,12 @@ client.on('ready', () => {
 
 
 client.on('message', msg => {
+  if (msg.author.bot) {return;}
   /*variables*/
   const permision=msg.member.roles.cache.some(r => r.name === permisionRole)
   plantsData = JSON.parse(fs.readFileSync('appData/plants.json'));
   playerData = JSON.parse(fs.readFileSync('appData/playerData.json'));
-
   /*functions*/
-  if (msg.author.bot) {return;}
   const getMeasage = function() {return msg.content.toLowerCase()}
   const getCommand = function() {return msg.content.split(" ")}
   const send = function(txt) {msg.channel.send(txt)}
@@ -72,7 +71,7 @@ client.on('message', msg => {
             createData(toWho);
         }
         playerData[toWho.id].equipment = {};
-        send(toWho.username+" now has empty eq");
+        send(toWho.toString() + " now has empty eq");
     }else{noPermision()}
   }
 
@@ -85,7 +84,7 @@ client.on('message', msg => {
         for (var i = 0; i < playerData[toWho.id].farm.plants.length; i++) {
           playerData[toWho.id].farm.plants[i]="empty";
         }
-        send(toWho.username+" now has empty farm");
+        send(toWho.toString() + " now has empty farm");
     }else{noPermision()}
   }
 
@@ -172,7 +171,8 @@ client.on('message', msg => {
   }
 
   if (getCommand()[0] == prefix + "Wallet") {
-    send("You have:"+playerData[msg.author.id].money);
+    let toWho = msg.mentions.users.first() || msg.author;
+    send("You have:"+playerData[toWho.id].money);
   }
 
   if (getCommand()[0] == prefix + "CreateFarm") {
@@ -221,7 +221,8 @@ client.on('message', msg => {
     }
 
     if (getCommand()[0] == prefix + "ShowEq") {
-      const items=Object.keys(playerData[msg.author.id].equipment);
+      let toWho = msg.mentions.users.first() || msg.author;
+      const items=Object.keys(playerData[toWho.id].equipment);
       for (var i = 0; i < items.length; i++) {
         send(`Name:**${items[i]}** Count:**${playerData[msg.author.id].equipment[items[i]].count}**`);
       }
