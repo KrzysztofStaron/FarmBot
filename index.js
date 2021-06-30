@@ -7,8 +7,8 @@ let prefix;
 let plantsData;
 let playerData;
 
-if (!fs.existsSync("appData/playerData.json")) fs.writeFileSync('appData/playerData.json', "{}");
-if (!fs.existsSync("appData/plants.json")) fs.writeFileSync('appData/plants.json',  "{}");
+if (!fs.existsSync("playerData.json")) fs.writeFileSync('playerData.json', "{}");
+if (!fs.existsSync("plants.json")) fs.writeFileSync('plants.json',  "{}");
 
 client.on('ready', () => {
   console.log(`Connect: ${client.user.tag}`)
@@ -19,8 +19,8 @@ client.on('message', msg => {
   if (msg.author.bot) {return;}
   /*variables*/
   const permision=msg.member.roles.cache.some(r => r.name === permisionRole)
-  plantsData = JSON.parse(fs.readFileSync('appData/plants.json'));
-  playerData = JSON.parse(fs.readFileSync('appData/playerData.json'));
+  plantsData = JSON.parse(fs.readFileSync('plants.json'));
+  playerData = JSON.parse(fs.readFileSync('playerData.json'));
   /*functions*/
   const getMeasage = function() {return msg.content.toLowerCase()}
   const getCommand = function() {return msg.content.split(" ")}
@@ -278,8 +278,8 @@ client.on('message', msg => {
           }
         }
 
-  fs.writeFileSync('appData/playerData.json', JSON.stringify(playerData));
-  fs.writeFileSync('appData/plants.json', JSON.stringify(plantsData));
+  fs.writeFileSync('playerData.json', JSON.stringify(playerData));
+  fs.writeFileSync('plants.json', JSON.stringify(plantsData));
 });
 
 client.login(JSON.parse(fs.readFileSync('token.txt', 'utf8')));
