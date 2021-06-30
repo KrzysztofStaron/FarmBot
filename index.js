@@ -152,7 +152,7 @@ client.on('message', msg => {
     }else if(!parseInt(getCommand()[3]) > 0){
       send("time must be a number(write in minutes)")
     }else if(!parseInt(getCommand()[4]) > 0){
-      send("sellPrice myst be a number")
+      send("sellPrice must be a number")
     }else{
       plantsData[getCommand()[1]] ={
         "buyPrice":parseInt(getCommand()[2]),
@@ -258,9 +258,14 @@ client.on('message', msg => {
           }
           send("The Plant was planted");
         }
+
+        if (getCommand()[0] == prefix + "ShowFarm") {
+          var farm=playerData[msg.author.id].farm;
+          for (var i = 0; i < farm.length; i++) {
+            send([i]+":"+farm.plants[i]);
+          }
+        }
       }
-
-
 
   fs.writeFileSync('appData/playerData.json', JSON.stringify(playerData));
   fs.writeFileSync('appData/plants.json', JSON.stringify(plantsData));
