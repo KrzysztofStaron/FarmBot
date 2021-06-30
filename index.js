@@ -257,15 +257,29 @@ client.on('message', msg => {
             playerData[msg.author.id].equipment[getCommand()[2]].count-=1;
           }
           send("The Plant was planted");
-        }
+        }}
 
         if (getCommand()[0] == prefix + "ShowFarm") {
           var farm=playerData[msg.author.id].farm;
-          for (var i = 0; i < farm.length; i++) {
-            send([i]+":"+farm.plants[i]);
+          var type;
+          if (farm.size%4==0) {
+            type=4;
+          }else if (farm.size%3==0) {
+            type=3;
+          }else if (farm.size%2==0) {
+            type=2;
+          }else{
+            type=1;
+          }
+
+          for (var q = 0; q < farm.size/type; q++) {
+            var toSend="";
+            for (var i = 0; i < type; i++) {
+              toSend+=i+1+q*type+" :**"+farm.plants[i+q*type]+"** , ";
+            }
+            send(toSend);
           }
         }
-      }
 
   fs.writeFileSync('appData/playerData.json', JSON.stringify(playerData));
   fs.writeFileSync('appData/plants.json', JSON.stringify(plantsData));
