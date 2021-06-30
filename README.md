@@ -33,7 +33,7 @@ client.login("{YourToken}");
 **2**. *By everybody* <br>
 ```
  •Wallet {who(not required)} display user money
- •CreateFarm {size} create your farm
+ •BuyFarm {size} create your farm
  •ShowEq {who(not required)} show your eq
  •BuyPlant {count} {PlantName}
  •PlantVegetable {tile} {what} plant vegetable

@@ -43,7 +43,7 @@ client.on('message', msg => {
       "money":0,
       "farm":{
         "size":1,
-        "plants":["empty"]
+        "plants":[{"name":"empty"},]
       },
       "equipment":{}
     }
@@ -82,7 +82,7 @@ client.on('message', msg => {
             createData(toWho);
         }
         for (var i = 0; i < playerData[toWho.id].farm.plants.length; i++) {
-          playerData[toWho.id].farm.plants[i]="empty";
+          playerData[toWho.id].farm.plants[i]={"name":"empty"};
         }
         send(toWho.toString() + " now has empty farm");
     }else{noPermision()}
@@ -122,7 +122,7 @@ client.on('message', msg => {
           createData(toWho);
         }
         playerData[toWho.id].money += parseInt(getCommand()[1]);
-        send(toWho.username+" now has:" + playerData[toWho.id].money);
+        send(toWho.username+" now has:**" + playerData[toWho.id].money+"**");
       }
     }else{noPermision()}
   }
@@ -172,10 +172,10 @@ client.on('message', msg => {
 
   if (getCommand()[0] == prefix + "Wallet") {
     let toWho = msg.mentions.users.first() || msg.author;
-    send("You have:"+playerData[toWho.id].money);
+    send("You have:**"+playerData[toWho.id].money+"**");
   }
 
-  if (getCommand()[0] == prefix + "CreateFarm") {
+  if (getCommand()[0] == prefix + "BuyFarm") {
     if (getCommand().length != 2) {
       send("{size}");
     }else if(!parseInt(getCommand()[1]) > 0){
@@ -193,7 +193,7 @@ client.on('message', msg => {
         playerData[msg.author.id].money -= farmPrice;
         send("```Farm price:"+farmPrice +"\nNow have:" + playerData[msg.author.id].money+"\nYour farm now contain: "+farmSize+" dirt tiles```");
         while (playerData[msg.author.id].farm.plants.length != playerData[msg.author.id].farm.size) {
-          playerData[msg.author.id].farm.plants.push("empty");
+          playerData[msg.author.id].farm.plants.push({"name":"empty"});
         }
       }else{
         send("You have:"+playerData[msg.author.id].money+"\n Farm cost:"+farmPrice);
@@ -243,7 +243,7 @@ client.on('message', msg => {
           }
         }else if(parseInt(getCommand()[1])-1>playerData[msg.author.id].farm.size){
           send("incorrect tile number!,your tiles:1-"+playerData[msg.author.id].farm.size);
-        }else if(playerData[msg.author.id].farm.plants[parseInt(getCommand()[1])-1]!="empty"){
+        }else if(playerData[msg.author.id].farm.plants[parseInt(getCommand()[1])-1].name!="empty"){
           send("this tile contain plant");
         }else{
           playerData[msg.author.id].farm.plants[parseInt(getCommand()[1])-1]={
@@ -262,20 +262,17 @@ client.on('message', msg => {
         if (getCommand()[0] == prefix + "ShowFarm") {
           var farm=playerData[msg.author.id].farm;
           var type;
-          if (farm.size%4==0) {
-            type=4;
-          }else if (farm.size%3==0) {
-            type=3;
-          }else if (farm.size%2==0) {
-            type=2;
-          }else{
-            type=1;
+          for (var i = 8; i > 1; i--) {
+            if (farm.size%i==0) {
+              type=i;
+              break;
+            }
           }
 
           for (var q = 0; q < farm.size/type; q++) {
             var toSend="";
             for (var i = 0; i < type; i++) {
-              toSend+=i+1+q*type+" :**"+farm.plants[i+q*type]+"** , ";
+              toSend+=i+1+q*type+" :**"+farm.plants[i+q*type].name+"** , ";
             }
             send(toSend);
           }
